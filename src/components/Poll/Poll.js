@@ -21,6 +21,7 @@ export default function Poll() {
   const { id } = useParams();
   const [poll, setPoll] = React.useState({ title: "Loading", x: [] });
   const [name, setName] = React.useState("");
+  const [loading, setLoading] = React.useState(true);
   function handleChange(e) {
     setName(e.target.value);
   }
@@ -39,7 +40,7 @@ export default function Poll() {
     console.log(`POST ${url} ${JSON.stringify(data)}`);
 
     await axios.post(url, data);
-    navigate(`/poll/${id}`);
+    setLoading(true);
   };
 
   React.useEffect(() => {
@@ -49,10 +50,11 @@ export default function Poll() {
           headers: {},
         });
         setPoll(data);
+        setLoading(false);
       } catch {}
     }
     fetchData();
-  }, [id, poll, setPoll, navigate]);
+  }, [id, loading]);
 
   function makeIcon(x, selections) {
     const selection =
