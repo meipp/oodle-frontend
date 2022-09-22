@@ -13,6 +13,7 @@ import { CheckIcon, Cross1Icon, QuestionMarkIcon } from '@radix-ui/react-icons';
 import axios from "axios";
 import * as React from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { ENDPOINT_URL } from '../../utils/contants';
 import SelectionButton from "./SelectionButton";
 
 const theme = createTheme();
@@ -35,7 +36,7 @@ export default function Poll() {
       selection: document.getElementById(`selection-${i}`).value || "unknown",
     }));
     const data = { name, selections };
-    const url = `http://127.0.0.1:3001/poll/respond/${id}`;
+    const url = `${ENDPOINT_URL}/poll/respond/${id}`;
     console.log(`POST ${url} ${JSON.stringify(data)}`);
 
     await axios.post(url, data);
@@ -45,7 +46,7 @@ export default function Poll() {
   React.useEffect(() => {
     async function fetchData() {
       try {
-        const { data } = await axios.get(`http://127.0.0.1:3001/poll/${id}`, {
+        const { data } = await axios.get(`${ENDPOINT_URL}/poll/${id}`, {
           headers: {},
         });
         setPoll(data);
