@@ -1,19 +1,19 @@
-import * as React from "react";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Table from "@mui/material/Table";
-import TableRow from "@mui/material/TableRow";
-import TableCell from "@mui/material/TableCell";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import axios from "axios";
-import SelectionButton from "./SelectionButton";
-import { useParams, useNavigate } from "react-router-dom";
 import { TableBody, TableHead } from "@mui/material";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import CssBaseline from "@mui/material/CssBaseline";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Table from "@mui/material/Table";
+import TableCell from "@mui/material/TableCell";
+import TableRow from "@mui/material/TableRow";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import { CheckIcon, Cross1Icon, QuestionMarkIcon } from '@radix-ui/react-icons';
+import axios from "axios";
+import * as React from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import SelectionButton from "./SelectionButton";
 
 const theme = createTheme();
 
@@ -61,19 +61,22 @@ export default function Poll() {
       case "yes":
         return (
           <Button disabled>
-            <FontAwesomeIcon color="green" icon="check" />
+            {/* <FontAwesomeIcon color="green" icon="check" /> */}
+          <CheckIcon />
           </Button>
         );
       case "no":
         return (
           <Button disabled>
-            <FontAwesomeIcon color="red" icon="ban" />
+            {/* <FontAwesomeIcon color="red" icon="ban" /> */}
+            <Cross1Icon />
           </Button>
         );
       case "unknown":
         return (
           <Button disabled>
-            <FontAwesomeIcon color="gray" icon="question" />
+            {/* <FontAwesomeIcon color="gray" icon="question" /> */}
+            <QuestionMarkIcon />
           </Button>
         );
       default:
