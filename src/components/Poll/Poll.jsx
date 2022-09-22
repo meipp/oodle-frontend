@@ -10,23 +10,69 @@ import TableRow from "@mui/material/TableRow";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { CheckIcon, Cross1Icon, QuestionMarkIcon } from '@radix-ui/react-icons';
-import axios from "axios";
+import axios from 'axios';
 import * as React from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import useSWR from 'swr';
 import { ENDPOINT_URL } from '../../utils/contants';
+import { fetcher } from '../../utils/fetcher';
 import SelectionButton from "./SelectionButton";
 
 const theme = createTheme();
 
+function makeIcon(x, selections) {
+  const selection =
+    selections.find((selection) => selection.x === x)?.selection || "unknown";
+  switch (selection) {
+    case "yes":
+      return (
+        <Button disabled>
+          <CheckIcon style={{
+            color: "green",
+          }} />
+        </Button>
+      );
+    case "no":
+      return (
+        <Button disabled>
+          <Cross1Icon style={{
+            color: 'red',
+          }}
+          />
+        </Button>
+      );
+    case "unknown":
+      return (
+        <Button disabled>
+          <QuestionMarkIcon />
+        </Button>
+      );
+    default:
+      throw new Error(`Unknown selection ${selection}`);
+  }
+}
+
 export default function Poll() {
   const { id } = useParams();
-  const [poll, setPoll] = React.useState({ title: "Loading", x: [] });
+  const { data: poll, error, isLoading, mutate } = useSWR(`${ENDPOINT_URL}/poll/${id}`, fetcher);
   const [name, setName] = React.useState("");
+
+  if (isLoading) {
+    return <>Loading...</>
+  }
+
+  if (error) {
+    console.error(error);
+    return <pre>{JSON.stringify({ error }, null, 2)}</pre>
+  }
+
+  if (!poll) {
+    return <h1>No poll</h1>
+  }
+
   function handleChange(e) {
     setName(e.target.value);
   }
-
-  let navigate = useNavigate();
 
   const submit = async (event) => {
     event.preventDefault();
@@ -37,53 +83,10 @@ export default function Poll() {
     }));
     const data = { name, selections };
     const url = `${ENDPOINT_URL}/poll/respond/${id}`;
-    console.log(`POST ${url} ${JSON.stringify(data)}`);
 
-    await axios.post(url, data);
-    navigate(`/poll/${id}`);
+    await axios.post(url, data).catch(console.error);
+    mutate()
   };
-
-  React.useEffect(() => {
-    async function fetchData() {
-      try {
-        const { data } = await axios.get(`${ENDPOINT_URL}/poll/${id}`, {
-          headers: {},
-        });
-        setPoll(data);
-      } catch {}
-    }
-    fetchData();
-  }, [id, poll, setPoll, navigate]);
-
-  function makeIcon(x, selections) {
-    const selection =
-      selections.find((selection) => selection.x === x)?.selection || "unknown";
-    switch (selection) {
-      case "yes":
-        return (
-          <Button disabled>
-            {/* <FontAwesomeIcon color="green" icon="check" /> */}
-          <CheckIcon />
-          </Button>
-        );
-      case "no":
-        return (
-          <Button disabled>
-            {/* <FontAwesomeIcon color="red" icon="ban" /> */}
-            <Cross1Icon />
-          </Button>
-        );
-      case "unknown":
-        return (
-          <Button disabled>
-            {/* <FontAwesomeIcon color="gray" icon="question" /> */}
-            <QuestionMarkIcon />
-          </Button>
-        );
-      default:
-        throw new Error(`Unknown selection ${selection}`);
-    }
-  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -133,7 +136,7 @@ export default function Poll() {
                       sx={{ width: "8em" }}
                     ></TextField>
                   </TableCell>
-                  {poll.x.map((x, i) => (
+                  {poll.x.map((_x, i) => (
                     <TableCell key={i}>
                       <SelectionButton
                         selection_id={`selection-${i}`}
