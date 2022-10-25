@@ -13,8 +13,8 @@ import axios from "axios";
 import SelectionButton from "./SelectionButton";
 import { useParams, useNavigate } from "react-router-dom";
 import { TableBody, TableHead } from "@mui/material";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { API_URL } from "../../config";
+import Selection from "./Selection";
 
 const theme = createTheme();
 
@@ -60,28 +60,7 @@ export default function Poll() {
   function makeIcon(x, selections) {
     const selection =
       selections.find((selection) => selection.x === x)?.selection || "unknown";
-    switch (selection) {
-      case "yes":
-        return (
-          <Button disabled>
-            <FontAwesomeIcon color="green" icon="check" />
-          </Button>
-        );
-      case "no":
-        return (
-          <Button disabled>
-            <FontAwesomeIcon color="red" icon="ban" />
-          </Button>
-        );
-      case "unknown":
-        return (
-          <Button disabled>
-            <FontAwesomeIcon color="gray" icon="question" />
-          </Button>
-        );
-      default:
-        throw new Error(`Unknown selection ${selection}`);
-    }
+    return <Selection state={selection}></Selection>;
   }
 
   return (
