@@ -1,5 +1,6 @@
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
+import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -33,6 +34,12 @@ function randomElement(array) {
 }
 
 export default function Header() {
+  let navigate = useNavigate();
+
+  function onClick() {
+    navigate("/poll/new");
+  }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -42,6 +49,7 @@ export default function Header() {
             noWrap
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            onClick={onClick}
           >
             {randomElement(consonantsExceptD)}oodle
           </Typography>

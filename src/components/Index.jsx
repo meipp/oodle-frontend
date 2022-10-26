@@ -6,8 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 export default function Index() {
   return (
     <div>
-      <Header />
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path="/poll/new" element={<PollCreation />}></Route>
           <Route path="/poll/:id" element={<PollView />}></Route>
