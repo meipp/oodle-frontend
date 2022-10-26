@@ -1,5 +1,5 @@
 import Header from "./Header/Header";
-import Poll from "./Poll/Poll";
+import PollView from "./Poll/PollView";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 export default function Index() {
@@ -8,7 +8,7 @@ export default function Index() {
       <Header />
       <BrowserRouter>
         <Routes>
-          <Route path="/poll/:id" element={<Poll />}></Route>
+          <Route path="/poll/:id" element={<PollView />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
