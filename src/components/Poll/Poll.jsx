@@ -52,7 +52,7 @@ export default function Poll({poll, id, setLoading}) {
       <Typography component="h1" variant="h5">
         {poll.title}
       </Typography>
-      <Typography variant="subtitle1" color="default">
+      <Typography variant="subtitle1" color="default" sx={{ whiteSpace: "pre-line" }}>
         {poll.description}
       </Typography>
       <Box component="form" noValidate sx={{ mt: 1 }}>

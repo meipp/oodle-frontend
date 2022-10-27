@@ -68,7 +68,7 @@ export default function PollView() {
               <Input value={title} onChange={onChangeTitle} fullWidth/>
               <br/>
               <br/>
-              <Input value={description} onChange={onChangeDescription} fullWidth/>
+              <Input value={description} onChange={onChangeDescription} fullWidth multiline/>
               <br/>
               <br/>
               <br/>
