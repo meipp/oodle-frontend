@@ -4,7 +4,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Divider from '@mui/material/Divider';
 import Poll from "./Poll";
-import { Button, Input } from "@mui/material";
+import { Box, Button, Input } from "@mui/material";
 import axios from "axios";
 import { API_URL } from "../../config";
 
@@ -62,21 +62,26 @@ export default function PollView() {
               display: "block",
             }}
           >
-            <Input value={title} onChange={onChangeTitle}/>
-            <br/>
-            <br/>
-            <Input value={description} onChange={onChangeDescription}/>
-            <br/>
-            <br/>
-            <Input value={options} onChange={onChangeOptions} multiline/>
-            <Button
-              onClick={create}
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Create
-            </Button>
+            <Box sx={{
+              mt: 8
+            }}>
+              <Input value={title} onChange={onChangeTitle} fullWidth/>
+              <br/>
+              <br/>
+              <Input value={description} onChange={onChangeDescription} fullWidth/>
+              <br/>
+              <br/>
+              <br/>
+              <Input value={options} onChange={onChangeOptions} fullWidth multiline/>
+              <Button
+                onClick={create}
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Create
+              </Button>
+            </Box>
           </div>
           <Divider orientation="vertical" flexItem/>
           <Poll poll={poll} id={id} setLoading={setLoading}></Poll>
