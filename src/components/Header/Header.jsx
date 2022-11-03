@@ -48,7 +48,13 @@ export default function Header() {
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", sm: "block" },
+              ":hover": {
+                cursor: "pointer",
+              },
+            }}
             onClick={onClick}
           >
             {randomElement(consonantsExceptD)}oodle
