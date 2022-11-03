@@ -6,6 +6,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { API_URL } from "../../config";
 import Poll from "./Poll";
+import Helmet from "react-helmet";
 
 const theme = createTheme();
 
@@ -31,6 +32,11 @@ export default function PollView() {
 
   return (
     <ThemeProvider theme={theme}>
+      <Helmet>
+        <title>{poll.title} - oodle</title>
+        <meta name="description" content={poll.description}/>
+      </Helmet>
+
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Poll poll={poll} id={id} setLoading={setLoading}></Poll>

@@ -7,6 +7,7 @@ import Poll from "./Poll";
 import { Box, Button, Input } from "@mui/material";
 import axios from "axios";
 import { API_URL } from "../../config";
+import Helmet from "react-helmet";
 
 const theme = createTheme();
 
@@ -47,6 +48,11 @@ export default function PollView() {
 
   return (
     <ThemeProvider theme={theme}>
+      <Helmet>
+        <title>oodle</title>
+        <meta name="description" content="oodle polling system"/>
+      </Helmet>
+
       {/* <Container component="main" maxWidth="xs"> */}
         <CssBaseline />
         <div
