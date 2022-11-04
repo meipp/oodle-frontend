@@ -10,6 +10,8 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import { TableBody, TableHead } from "@mui/material";
 import EditableColumnTitle from "./EditableColumnTitle";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import AddButton from "./AddButton";
 
 export default function PollCreationMatrix() {
   const navigate = useNavigate();
@@ -30,13 +32,22 @@ export default function PollCreationMatrix() {
       setState((a) => a.map((x, idx) => idx === i ? value : x));
     }
 
-    return [append, deleteIth, setIth];
+    function insertIth(i, value) {
+      console.log(`insert ${value} at position ${i}`);
+      setState((a) => {
+        const a2 = [...a];
+        a2.splice(i, 0, value);
+        return a2;
+      });
+    }
+
+    return [append, deleteIth, setIth, insertIth];
   }
 
   const [x, setX] = React.useState(["X1", "X2", "X3"]);
-  const [appendX, deleteIthX, setIthX] = arrayStateMethods(setX);
+  const [appendX, deleteIthX, setIthX, insertIthX] = arrayStateMethods(setX);
   const [y, setY] = React.useState(["Y1", "Y2"]);
-  const [appendY, deleteIthY, setIthY] = arrayStateMethods(setY);
+  const [appendY, deleteIthY, setIthY, insertIthY] = arrayStateMethods(setY);
 
   const poll = { title, description, x, y };
 
@@ -78,17 +89,23 @@ export default function PollCreationMatrix() {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell></TableCell> {/* empty cell */}
+                  <TableCell> {/*empty cell*/} </TableCell>
+
+                  <AddButton onClick={() => insertIthX(0, `<$>`)}/>
+
                   {poll.x.map((x, i) => (
-                    <TableCell align="center" key={`x${i}`}>
-                      {/* {x} */}
-                      <EditableColumnTitle
-                        initialValue={x}
-                        setValue={(v) => setIthX(i, v)}
-                        onAdd={() => appendX("")}
-                        onDelete={() => deleteIthX(i)}
-                      />
-                    </TableCell>
+                    <>
+                      <TableCell align="center" key={`x${i}`}>
+                        {/* {x} */}
+                        <EditableColumnTitle
+                          initialValue={x}
+                          setValue={(v) => setIthX(i, v)}
+                          // onAdd={() => appendX("")}
+                          onDelete={() => deleteIthX(i)}
+                        />
+                      </TableCell>
+                      <AddButton onClick={() => insertIthX(i+1, `<${i}>`)}/>
+                    </>
                     )
                   )}
                 </TableRow>
@@ -96,26 +113,53 @@ export default function PollCreationMatrix() {
               <TableBody>
                 {( poll.y.map((y, i) => (
                   <>
+                    <TableRow>
+                      <AddButton onClick={() => insertIthY(i, `<${i}>`)}/>
+
+                      {poll.x.map((x, j) => (
+                        <>
+                          <TableCell> {/* empty cell */} </TableCell>
+                          <TableCell> {/* empty cell */} </TableCell>
+                        </>
+                      ))}
+                      <TableCell> {/* empty cell */} </TableCell>
+                    </TableRow>
+
                     <TableRow key={`y${i}`}>
                       <TableCell align="center">
                         <EditableColumnTitle
                           initialValue={y}
                           setValue={(v) => setIthY(i, v)}
-                          onAdd={() => appendY("")}
+                          // onAdd={() => appendY("")}
                           onDelete={() => deleteIthY(i)}
                         />
                       </TableCell>
 
                       {poll.x.map((x, j) => (
-                        <TableCell align="center" key={`y${i}:x${j}`}>
-                          {x} + {y}
-                          {/* <Selection state="unknown"/> */}
-                        </TableCell>
+                        <>
+                          <TableCell> {/* empty cell */} </TableCell>
+                          <TableCell align="center" key={`y${i}:x${j}`}>
+                            {x} + {y}
+                            {/* <Selection state="unknown"/> */}
+                          </TableCell>
+                        </>
                       ))}
+                      <TableCell> {/* empty cell */} </TableCell>
                     </TableRow>
                   </>
                 )))}
 
+                <TableRow>
+                  <AddButton onClick={() => insertIthY(poll.y.length, `<$>`)}/>
+
+                  {poll.x.map((x, j) => (
+                    <>
+                      <TableCell> {/* empty cell */} </TableCell>
+                      <TableCell> {/* empty cell */} </TableCell>
+                    </>
+                  ))}
+                  <TableCell> {/* empty cell */} </TableCell>
+                </TableRow>
               </TableBody>
             </Table>
 
