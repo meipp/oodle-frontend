@@ -1,9 +1,9 @@
 import Button from "@mui/material/Button";
 import fontawesome from "@fortawesome/fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faQuestion, faBan } from "@fortawesome/fontawesome-free-solid";
+import { faCheck, faQuestion, faBan, faTrashAlt, faPlus, faMinus } from "@fortawesome/fontawesome-free-solid";
 
-fontawesome.library.add(faCheck, faBan, faQuestion);
+fontawesome.library.add(faCheck, faBan, faQuestion, faTrashAlt, faPlus );
 
 export default function Selection({state, onClick}) {
   const disabled = onClick === undefined;
