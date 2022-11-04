@@ -1,14 +1,11 @@
 import * as React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { API_URL } from "../../config";
 import Poll from "./Poll";
 import Helmet from "react-helmet";
-
-const theme = createTheme();
 
 export default function PollView() {
   const { id } = useParams();
@@ -31,7 +28,7 @@ export default function PollView() {
   }, [id, loading]);
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <Helmet>
         <title>{poll.title} - oodle</title>
         <meta name="description" content={poll.description}/>
@@ -41,6 +38,6 @@ export default function PollView() {
         <CssBaseline />
         <Poll poll={poll} id={id} setLoading={setLoading}></Poll>
       </Container>
-    </ThemeProvider>
+    </>
   );
 }

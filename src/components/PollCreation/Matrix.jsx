@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Box, Button, Input } from "@mui/material";
 import axios from "axios";
@@ -11,8 +10,6 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import { TableBody, TableHead } from "@mui/material";
 import EditableColumnTitle from "./EditableColumnTitle";
-
-const theme = createTheme();
 
 export default function PollCreationMatrix() {
   const navigate = useNavigate();
@@ -52,7 +49,7 @@ export default function PollCreationMatrix() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <Helmet>
         <title>oodle</title>
         <meta name="description" content="oodle polling system"/>
@@ -133,6 +130,6 @@ export default function PollCreationMatrix() {
           </Box>
         </Box>
       </>
-    </ThemeProvider>
+    </>
   );
 }

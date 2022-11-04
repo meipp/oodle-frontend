@@ -2,11 +2,14 @@ import Header from "./Header/Header";
 import PollView from "./Poll/PollView";
 import PollCreation from "./Poll/PollCreation";
 import MatrixCreation from "./PollCreation/Matrix";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+const theme = createTheme();
 
 export default function Index() {
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Header />
         <Routes>
@@ -15,6 +18,6 @@ export default function Index() {
           <Route path="/poll/:id" element={<PollView />}></Route>
         </Routes>
       </BrowserRouter>
-    </div>
+    </ThemeProvider>
   );
 }

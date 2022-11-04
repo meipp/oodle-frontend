@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Divider from '@mui/material/Divider';
 import Poll from "./Poll";
@@ -8,8 +7,6 @@ import { Box, Button, Input } from "@mui/material";
 import axios from "axios";
 import { API_URL } from "../../config";
 import Helmet from "react-helmet";
-
-const theme = createTheme();
 
 export default function PollView() {
   let navigate = useNavigate();
@@ -47,7 +44,7 @@ export default function PollView() {
   const setLoading = () => {};
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <Helmet>
         <title>oodle</title>
         <meta name="description" content="oodle polling system"/>
@@ -93,6 +90,6 @@ export default function PollView() {
           <Poll poll={poll} id={id} setLoading={setLoading}></Poll>
         </div>
       {/* </Container> */}
-    </ThemeProvider>
+    </>
   );
 }
