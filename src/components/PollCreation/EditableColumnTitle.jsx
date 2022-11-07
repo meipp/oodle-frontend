@@ -1,9 +1,9 @@
 import * as React from "react";
-import { Box, Button, Stack } from "@mui/material";
+import { Button, InputAdornment } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function EditableColumnTitle({initialValue, setValue, onAdd, onDelete}) {
+export default function EditableColumnTitle({initialValue, setValue, onDelete}) {
   const [state, setState] = React.useState(initialValue);
 
   function onChange(e) {
@@ -13,27 +13,29 @@ export default function EditableColumnTitle({initialValue, setValue, onAdd, onDe
 
   return (
     <>
-      <Box>
-        <Stack>
-          <TextField
-            value={state}
-            onChange={onChange}
-            sx={{
-              width: "10rem"
-            }}
-          />
+      <TextField
+        className="adornment-no-padding"
+        value={state}
+        onChange={onChange}
+        size="small"
+        sx={{
+          width: "10rem",
+        }}
 
-          <Box>
-            <Button onClick={onDelete}>
+        InputProps={{
+          endAdornment:
+          <InputAdornment position="end" sx={{
+            m: 0,
+            p: 0
+          }}>
+            <Button onClick={onDelete} sx={{
+              minWidth: "32px",
+            }}>
               <FontAwesomeIcon icon="trash-alt" />
             </Button>
-
-            <Button onClick={onAdd}>
-              <FontAwesomeIcon icon="plus" />
-            </Button>
-          </Box>
-        </Stack>
-      </Box>
+          </InputAdornment>
+        }}
+      />
     </>
   );
 }
