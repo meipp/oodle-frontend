@@ -6,11 +6,16 @@ function successor(array, item) {
   return array[index];
 }
 
-export default function SelectionButton({ selection_id }) {
+export default function SelectionButton({ selection_id, onUpdate }) {
   const [selection, setSelection] = React.useState("unknown");
 
   function handleOnclick() {
     const next = successor(["yes", "no", "unknown"], selection);
+
+    if(onUpdate) {
+      onUpdate(next);
+    }
+
     setSelection(next);
     document.getElementById(selection_id).value = next;
   }
