@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Box, Button, Input } from "@mui/material";
 import axios from "axios";
-import { API_URL } from "../../config";
+import { API_URL } from "../../../config";
 import { Helmet } from "react-helmet-async";
 import Table from "@mui/material/Table";
 import TableRow from "@mui/material/TableRow";
@@ -12,7 +12,7 @@ import { TableBody, TableHead } from "@mui/material";
 import EditableColumnTitle from "./EditableColumnTitle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AddButton from "./AddButton";
-import EmptyCell from "../EmptyCell";
+import EmptyCell from "../../EmptyCell";
 
 export default function PollCreationMatrix() {
   const navigate = useNavigate();

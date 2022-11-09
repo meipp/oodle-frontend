@@ -1,5 +1,5 @@
-import PollViewSimple from "./View/Simple";
-import PollViewMatrix from "./View/Matrix";
+import PollViewSimple from "./View/PollViewSimple";
+import PollViewMatrix from "./View/PollViewMatrix";
 import { Poll } from "../../types/Poll";
 
 type Props = {
