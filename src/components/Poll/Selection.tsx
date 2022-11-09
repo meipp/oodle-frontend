@@ -1,7 +1,7 @@
 import Button from "@mui/material/Button";
 import fontawesome from "@fortawesome/fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faQuestion, faBan, faTrashAlt, faPlus, faMinus } from "@fortawesome/fontawesome-free-solid";
+import { faCheck, faQuestion, faBan, faTrashAlt, faPlus } from "@fortawesome/fontawesome-free-solid";
 import { DispatchWithoutAction } from "react";
 
 fontawesome.library.add(faCheck, faBan, faQuestion, faTrashAlt, faPlus );

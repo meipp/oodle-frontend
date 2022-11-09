@@ -1,6 +1,5 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
 import Table from "@mui/material/Table";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
@@ -8,10 +7,8 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import SelectionButton from "../SelectionButton";
-import { useParams, useNavigate } from "react-router-dom";
 import { TableBody, TableHead } from "@mui/material";
 import { API_URL } from "../../../config";
-import Selection from "../Selection";
 import { Poll } from "../../../types/Poll";
 import EmptyCell from "../../EmptyCell";
 

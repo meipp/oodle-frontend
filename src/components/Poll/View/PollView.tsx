@@ -2,7 +2,7 @@ import * as React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { API_URL } from "../../../config";
 import Poll from "../Poll";
 import { Helmet } from "react-helmet-async";
@@ -16,8 +16,6 @@ export default function PollView() {
 
   const [poll, setPoll] = React.useState({ title: "Loading", description: "", x: [], y: undefined, responses: [] });
   const [loading, setLoading] = React.useState(true);
-
-  let navigate = useNavigate();
 
   React.useEffect(() => {
     async function fetchData() {

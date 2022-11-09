@@ -8,7 +8,6 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import SelectionButton from "../SelectionButton";
-import { useParams, useNavigate } from "react-router-dom";
 import { TableBody, TableHead } from "@mui/material";
 import { API_URL } from "../../../config";
 import Selection from "../Selection";

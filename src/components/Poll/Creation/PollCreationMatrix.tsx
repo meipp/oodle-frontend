@@ -10,7 +10,6 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import { TableBody, TableHead } from "@mui/material";
 import EditableColumnTitle from "./EditableColumnTitle";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AddButton from "./AddButton";
 import EmptyCell from "../../EmptyCell";
 
@@ -46,9 +45,9 @@ export default function PollCreationMatrix() {
   }
 
   const [x, setX] = React.useState(["X1", "X2", "X3"]);
-  const {append: appendX, deleteIth: deleteIthX, setIth: setIthX, insertIth: insertIthX} = arrayStateMethods(setX);
+  const {deleteIth: deleteIthX, setIth: setIthX, insertIth: insertIthX} = arrayStateMethods(setX);
   const [y, setY] = React.useState(["Y1", "Y2"]);
-  const {append: appendY, deleteIth: deleteIthY, setIth: setIthY, insertIth: insertIthY} = arrayStateMethods(setY);
+  const {deleteIth: deleteIthY, setIth: setIthY, insertIth: insertIthY} = arrayStateMethods(setY);
 
   const poll = { title, description, x, y };
 
