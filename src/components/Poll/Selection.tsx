@@ -8,7 +8,7 @@ fontawesome.library.add(faCheck, faBan, faQuestion, faTrashAlt, faPlus );
 
 type Props = {
   state: "yes" | "no" | "unknown";
-  onClick: DispatchWithoutAction;
+  onClick?: DispatchWithoutAction;
 }
 
 export default function Selection({state, onClick}: Props) {
