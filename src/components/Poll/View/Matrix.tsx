@@ -13,6 +13,7 @@ import { TableBody, TableHead } from "@mui/material";
 import { API_URL } from "../../../config";
 import Selection from "../Selection";
 import { Poll } from "../../../types/Poll";
+import EmptyCell from "../../EmptyCell";
 
 type Props = {
   poll: Poll;
@@ -123,7 +124,7 @@ export default function PollViewMatrix({poll, id, setLoading}: Props) {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell></TableCell> {/* empty cell */}
+              <EmptyCell/>
               {poll.x.map((x, i) => (
                 <TableCell align="center" key={i}>
                   {x}

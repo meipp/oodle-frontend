@@ -12,6 +12,7 @@ import { TableBody, TableHead } from "@mui/material";
 import EditableColumnTitle from "./EditableColumnTitle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AddButton from "./AddButton";
+import EmptyCell from "../EmptyCell";
 
 export default function PollCreationMatrix() {
   const navigate = useNavigate();
@@ -89,7 +90,7 @@ export default function PollCreationMatrix() {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell> {/*empty cell*/} </TableCell>
+                  <EmptyCell/>
 
                   <AddButton onClick={() => insertIthX(0, `<$>`)}/>
 
@@ -118,11 +119,11 @@ export default function PollCreationMatrix() {
 
                       {poll.x.map((x, j) => (
                         <>
-                          <TableCell> {/* empty cell */} </TableCell>
-                          <TableCell> {/* empty cell */} </TableCell>
+                          <EmptyCell/>
+                          <EmptyCell/>
                         </>
                       ))}
-                      <TableCell> {/* empty cell */} </TableCell>
+                      <EmptyCell/>
                     </TableRow>
 
                     <TableRow key={`y${i}`}>
@@ -137,14 +138,14 @@ export default function PollCreationMatrix() {
 
                       {poll.x.map((x, j) => (
                         <>
-                          <TableCell> {/* empty cell */} </TableCell>
+                          <EmptyCell/>
                           <TableCell align="center" key={`y${i}:x${j}`}>
                             {x} + {y}
                             {/* <Selection state="unknown"/> */}
                           </TableCell>
                         </>
                       ))}
-                      <TableCell> {/* empty cell */} </TableCell>
+                      <EmptyCell/>
                     </TableRow>
                   </>
                 )))}
@@ -154,11 +155,11 @@ export default function PollCreationMatrix() {
 
                   {poll.x.map((x, j) => (
                     <>
-                      <TableCell> {/* empty cell */} </TableCell>
-                      <TableCell> {/* empty cell */} </TableCell>
+                      <EmptyCell/>
+                      <EmptyCell/>
                     </>
                   ))}
-                  <TableCell> {/* empty cell */} </TableCell>
+                  <EmptyCell/>
                 </TableRow>
               </TableBody>
             </Table>
