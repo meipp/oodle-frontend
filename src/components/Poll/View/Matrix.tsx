@@ -12,18 +12,25 @@ import { useParams, useNavigate } from "react-router-dom";
 import { TableBody, TableHead } from "@mui/material";
 import { API_URL } from "../../../config";
 import Selection from "../Selection";
+import { Poll } from "../../../types/Poll";
 
-export default function PollViewMatrix({poll, id, setLoading}) {
+type Props = {
+  poll: Poll;
+  id: string;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function PollViewMatrix({poll, id, setLoading}: Props) {
   console.log("reset");
 
-  const userSelections = [];
+  const userSelections: {x: string; y?: string; selection: "yes" | "no" | "unknown";}[] = [];
   for(const x of poll.x) {
-    for(const y of poll.y) {
+    for(const y of poll.y ?? []) {
       userSelections.push({x, y, selection: "unknown"});
     }
   }
 
-  function makeUserSelection(x, y, selection) {
+  function makeUserSelection(x: string, y: string, selection: "yes" | "no" | "unknown") {
     const o = userSelections.find(s => s.x === x && s.y === y);
     if(o) {
       o.selection = selection;
@@ -33,11 +40,11 @@ export default function PollViewMatrix({poll, id, setLoading}) {
     }
   }
 
-  function mul(x, v) {
+  function mul(x: number, v: number[]) {
     return v.map(vi => x*vi);
   }
 
-  function add(v1, ...vs) {
+  function add(v1: number[], ...vs: number[][]) {
     const sum = [...v1];
 
     for(const vi of vs) {
@@ -53,7 +60,7 @@ export default function PollViewMatrix({poll, id, setLoading}) {
 
   // console.log('hello', add(mul(7, [5, 3, 6]), [1,2,3]));
 
-  function countNSelection(x, y, selection) {
+  function countNSelection(x: string, y: string, selection: "yes" | "no" | "unknown") {
     let n = 0;
     for(const {selections} of poll.responses ?? []) {
       selections.find(s => s.x === x && s.y === y && s.selection === selection) && n++;
@@ -61,7 +68,7 @@ export default function PollViewMatrix({poll, id, setLoading}) {
     return n;
   }
 
-  function mixColors(nGreen, nRed, nYellow) {
+  function mixColors(nGreen: number, nRed: number, nYellow: number) {
     const n = nGreen + nRed + nYellow;
 
     const green  = [72, 199, 142];
@@ -125,7 +132,7 @@ export default function PollViewMatrix({poll, id, setLoading}) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {poll.y.map((y, i) => (
+            {(poll.y ?? []).map((y, i) => (
               <TableRow key={i}>
                 <TableCell>{y}</TableCell>
                 {poll.x.map((x, j) => (

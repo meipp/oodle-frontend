@@ -8,7 +8,7 @@ function successor<A>(array: A[], item: A) {
 
 type Props = {
   selection_id: string;
-  onUpdate?: React.Dispatch<string>;
+  onUpdate?: React.Dispatch<"yes" | "no" | "unknown">;
 }
 
 export default function SelectionButton({ selection_id, onUpdate }: Props) {
