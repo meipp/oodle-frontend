@@ -116,10 +116,10 @@ export default function PollCreationMatrix() {
                     <TableRow>
                       <AddButton onClick={() => insertIthY(i, `<${i}>`)}/>
 
-                      {poll.x.map((x, j) => (
+                      {poll.x.map((_, j) => (
                         <>
-                          <EmptyCell/>
-                          <EmptyCell/>
+                          <EmptyCell key={`${j}_1`}/>
+                          <EmptyCell key={`${j}_2`}/>
                         </>
                       ))}
                       <EmptyCell/>
@@ -152,10 +152,10 @@ export default function PollCreationMatrix() {
                 <TableRow>
                   <AddButton onClick={() => insertIthY(poll.y.length, `<$>`)}/>
 
-                  {poll.x.map((x, j) => (
+                  {poll.x.map((_, j) => (
                     <>
-                      <EmptyCell/>
-                      <EmptyCell/>
+                      <EmptyCell key={`${j}_1`}/>
+                      <EmptyCell key={`${j}_2`}/>
                     </>
                   ))}
                   <EmptyCell/>

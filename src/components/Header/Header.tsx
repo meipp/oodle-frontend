@@ -1,4 +1,3 @@
-import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";

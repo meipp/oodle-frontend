@@ -90,7 +90,7 @@ export default function PollViewSimple({poll, id, setLoading}: Props) {
                   sx={{ width: "8em" }}
                 ></TextField>
               </TableCell>
-              {poll.x.map((x, i) => (
+              {poll.x.map((_, i) => (
                 <TableCell key={i}>
                   <SelectionButton
                     selection_id={`selection-${i}`}
