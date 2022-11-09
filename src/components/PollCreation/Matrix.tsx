@@ -19,20 +19,20 @@ export default function PollCreationMatrix() {
   const [title, setTitle] = React.useState("Title");
   const [description, setDescription] = React.useState("Description");
 
-  function arrayStateMethods(setState) {
-    function append(value) {
+  function arrayStateMethods<A>(setState: React.Dispatch<React.SetStateAction<A[]>>) {
+    function append(value: A) {
       setState((a) => [...a, value]);
     }
 
-    function deleteIth(i) {
+    function deleteIth(i: number) {
       setState((a) => a.filter((_, idx) => idx !== i));
     }
 
-    function setIth(i, value) {
+    function setIth(i: number, value: A) {
       setState((a) => a.map((x, idx) => idx === i ? value : x));
     }
 
-    function insertIth(i, value) {
+    function insertIth(i: number, value: A) {
       console.log(`insert ${value} at position ${i}`);
       setState((a) => {
         const a2 = [...a];
@@ -41,13 +41,13 @@ export default function PollCreationMatrix() {
       });
     }
 
-    return [append, deleteIth, setIth, insertIth];
+    return {append, deleteIth, setIth, insertIth};
   }
 
   const [x, setX] = React.useState(["X1", "X2", "X3"]);
-  const [appendX, deleteIthX, setIthX, insertIthX] = arrayStateMethods(setX);
+  const {append: appendX, deleteIth: deleteIthX, setIth: setIthX, insertIth: insertIthX} = arrayStateMethods(setX);
   const [y, setY] = React.useState(["Y1", "Y2"]);
-  const [appendY, deleteIthY, setIthY, insertIthY] = arrayStateMethods(setY);
+  const {append: appendY, deleteIth: deleteIthY, setIth: setIthY, insertIth: insertIthY} = arrayStateMethods(setY);
 
   const poll = { title, description, x, y };
 
