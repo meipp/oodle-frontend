@@ -12,26 +12,24 @@ export default function PollView() {
   let navigate = useNavigate();
 
   const [title, setTitle] = React.useState("Title");
-  function onChangeTitle(e) {
+  function onChangeTitle(e: React.ChangeEvent<HTMLInputElement>) {
     setTitle(e.target.value);
   }
 
   const [description, setDescription] = React.useState("Description");
-  function onChangeDescription(e) {
+  function onChangeDescription(e: React.ChangeEvent<HTMLInputElement>) {
     setDescription(e.target.value);
   }
 
   const [options, setOptions] = React.useState("Option A\nOption B\nOption C");
   const [x, setX] = React.useState(["Option A", "Option B", "Option C"]);
-  function onChangeOptions(e) {
+  function onChangeOptions(e: React.ChangeEvent<HTMLInputElement>) {
     const lines = e.target.value.split("\n");
     setX(lines.map(l => l.trim()).filter(l => l));
     setOptions(e.target.value);
   }
 
-  async function create(event) {
-    event.preventDefault();
-
+  async function create() {
     const url = `${API_URL}/poll`;
     console.log(`POST ${url} ${JSON.stringify(poll)}`);
     const { data: id } = await axios.post(url, poll);
@@ -39,8 +37,10 @@ export default function PollView() {
     navigate(`/poll/${id}`);
   }
 
-  const id = undefined;
-  const poll = { title, description, x };
+  // TODO: this is not nice
+  const id = "undefined";
+
+  const poll = { title, description, x, responses: [] };
   const setLoading = () => {};
 
   return (
