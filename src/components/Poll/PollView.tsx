@@ -5,7 +5,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { API_URL } from "../../config";
 import Poll from "./Poll";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 export default function PollView() {
   const { id } = useParams();

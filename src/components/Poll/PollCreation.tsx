@@ -6,7 +6,7 @@ import Poll from "./Poll";
 import { Box, Button, Input } from "@mui/material";
 import axios from "axios";
 import { API_URL } from "../../config";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 export default function PollView() {
   let navigate = useNavigate();
