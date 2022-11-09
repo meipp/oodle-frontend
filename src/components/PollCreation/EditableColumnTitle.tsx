@@ -3,10 +3,16 @@ import { Button, InputAdornment } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function EditableColumnTitle({initialValue, setValue, onDelete}) {
+type Props = {
+  initialValue: string;
+  setValue: React.Dispatch<string>;
+  onDelete: React.DispatchWithoutAction;
+}
+
+export default function EditableColumnTitle({initialValue, setValue, onDelete}: Props) {
   const [state, setState] = React.useState(initialValue);
 
-  function onChange(e) {
+  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
     setState(e.target.value);
     setValue(e.target.value);
   }

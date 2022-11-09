@@ -29,7 +29,7 @@ const consonantsExceptD = [
   "z",
 ];
 
-function randomElement(array) {
+function randomElement<A>(array: A[]): A {
   return array[Math.floor(Math.random() * array.length)];
 }
 

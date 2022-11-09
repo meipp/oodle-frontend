@@ -12,19 +12,24 @@ import { useParams, useNavigate } from "react-router-dom";
 import { TableBody, TableHead } from "@mui/material";
 import { API_URL } from "../../../config";
 import Selection from "../Selection";
+import { Poll } from "../../../types/Poll";
 
-export default function PollViewSimple({poll, id, setLoading}) {
+type Props = {
+  poll: Poll;
+  id: string;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function PollViewSimple({poll, id, setLoading}: Props) {
   const [name, setName] = React.useState("");
-  function handleChange(e) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setName(e.target.value);
   }
 
-  const submit = async (event) => {
-    event.preventDefault();
-
+  const submit = async () => {
     const selections = poll.x.map((x, i) => ({
       x,
-      selection: document.getElementById(`selection-${i}`).value || "unknown",
+      selection: (document.getElementById(`selection-${i}`) as any).value || "unknown",
     }));
     const data = { name, selections };
     const url = `${API_URL}/poll/respond/${id}`;
@@ -34,7 +39,7 @@ export default function PollViewSimple({poll, id, setLoading}) {
     setLoading(true);
   };
 
-  function makeIcon(x, selections) {
+  function makeIcon(x: string, selections: {x: string; y?: string; selection: "yes" | "no" | "unknown";}[]) {
     const selection =
       selections.find((selection) => selection.x === x)?.selection || "unknown";
     return <Selection state={selection}></Selection>;
@@ -89,7 +94,6 @@ export default function PollViewSimple({poll, id, setLoading}) {
                 <TableCell key={i}>
                   <SelectionButton
                     selection_id={`selection-${i}`}
-                    onClick={(e) => console.log(e.message)}
                   ></SelectionButton>
                 </TableCell>
               ))}

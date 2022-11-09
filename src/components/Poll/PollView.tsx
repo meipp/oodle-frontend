@@ -9,7 +9,12 @@ import Helmet from "react-helmet";
 
 export default function PollView() {
   const { id } = useParams();
-  const [poll, setPoll] = React.useState({ title: "Loading", x: [] });
+
+  if(id === undefined) {
+    throw new Error("id is undefined");
+  }
+
+  const [poll, setPoll] = React.useState({ title: "Loading", description: "", x: [], y: undefined, responses: [] });
   const [loading, setLoading] = React.useState(true);
 
   let navigate = useNavigate();
