@@ -8,7 +8,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import SelectionButton from "../SelectionButton";
-import { TableBody, TableHead } from "@mui/material";
+import { Container, Stack, TableBody, TableHead } from "@mui/material";
 import { API_URL } from "../../../config";
 import Selection from "../Selection";
 import { Poll } from "../../../types/Poll";
@@ -46,12 +46,12 @@ export default function PollViewSimple({poll, id, setLoading}: Props) {
   }
 
   return (
-    <Box
+    <Stack
       sx={{
         marginTop: 8,
-        display: "flex",
-        flexDirection: "column",
+        direction: "column",
         alignItems: "center",
+        justifyItems: "center",
       }}
     >
       <Typography component="h1" variant="h5">
@@ -60,6 +60,9 @@ export default function PollViewSimple({poll, id, setLoading}: Props) {
       <Typography variant="subtitle1" color="default" sx={{ whiteSpace: "pre-line" }}>
         {poll.description}
       </Typography>
+      <Container sx={{
+        overflow: "auto",
+      }}>
       <Box component="form" noValidate sx={{ mt: 1 }}>
         <Table>
           <TableHead>
@@ -100,8 +103,9 @@ export default function PollViewSimple({poll, id, setLoading}: Props) {
             </TableRow>
           </TableBody>
         </Table>
-
-        <Button
+      </Box>
+      </Container>
+      <Button
           onClick={submit}
           fullWidth
           variant="contained"
@@ -109,7 +113,6 @@ export default function PollViewSimple({poll, id, setLoading}: Props) {
         >
           Submit
         </Button>
-      </Box>
-    </Box>
+    </Stack>
   );
 }
