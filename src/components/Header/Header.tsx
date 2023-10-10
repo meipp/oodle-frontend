@@ -49,6 +49,7 @@ export default function Header() {
               ":hover": {
                 cursor: "pointer",
               },
+              userSelect: "none",
             }}
             onClick={onClick}
           >
