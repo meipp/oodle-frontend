@@ -80,7 +80,7 @@ export default function PollViewSimple({poll, id, setLoading}: Props) {
               <TableRow key={i}>
                 <TableCell>{name}</TableCell>
                 {poll.x.map((x, i) => (
-                  <TableCell key={i}>{makeIcon(x, selections)}</TableCell>
+                  <TableCell align="center" key={i}>{makeIcon(x, selections)}</TableCell>
                 ))}
               </TableRow>
             ))}
@@ -94,7 +94,7 @@ export default function PollViewSimple({poll, id, setLoading}: Props) {
                 ></TextField>
               </TableCell>
               {poll.x.map((_, i) => (
-                <TableCell key={i}>
+                <TableCell align="center" key={i}>
                   <SelectionButton
                     selection_id={`selection-${i}`}
                   ></SelectionButton>
