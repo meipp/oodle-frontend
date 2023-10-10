@@ -37,7 +37,7 @@ export default function PollView() {
         <meta name="description" content={poll.description}/>
       </Helmet>
 
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="lg">
         <CssBaseline />
         <Poll poll={poll} id={id} setLoading={setLoading}></Poll>
       </Container>
